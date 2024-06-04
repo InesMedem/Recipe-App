@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 const router = express.Router();
-// import { UserModel } from "../models/Users.js";
+import { UserModel } from "../models/user.js";
 
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
