@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { userRouter } from "./routes/users.js";
+import { recipeRouter } from "./routes/recipes.js";
 
 //! env variables
 
@@ -18,6 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/auth", userRouter);
+app.use("/recipes", recipeRouter);
 
 //! db connection
 
