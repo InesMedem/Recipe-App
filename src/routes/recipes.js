@@ -5,6 +5,19 @@ import { RecipeModel } from "../models/Recipes.js";
 
 const router = express.Router();
 
+//* Route to get all recipes
+
+router.get("/", async (req, res) => {
+  try {
+    const recipes = await RecipeModel.find();
+    res.json(recipes);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+//* Route to save a new recipe
+
 router.post("/", async (req, res) => {
   const recipe = new RecipeModel(req.body);
 
@@ -16,7 +29,9 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+//* Route to save a recipe to a user's saved recipes
+
+router.put("/", async (req, res) => {
   try {
     const recipe = await RecipeModel.findById(req.body.recipeID);
     const user = await UserModel.findById(req.body.userID);
@@ -28,6 +43,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+//* Route to get saved recipes by IDs for a user
+
 router.get("savedRecepies/ids", async (req, res) => {
   try {
     const user = await UserModel.findyId(req.body.userID);
@@ -36,6 +53,8 @@ router.get("savedRecepies/ids", async (req, res) => {
     res.json(err);
   }
 });
+
+//* Route to get saved recipes for a user
 
 router.get("savedRecepies", async (req, res) => {
   try {
