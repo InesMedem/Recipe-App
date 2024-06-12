@@ -21,6 +21,9 @@ app.use(cors());
 
 app.use("/auth", userRouter);
 app.use("/recipes", recipeRouter);
+app.get("/api", (req, res) => {
+  res.send({ message: "Hello from the backend!" });
+});
 
 //! db connection
 
